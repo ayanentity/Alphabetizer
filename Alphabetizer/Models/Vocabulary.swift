@@ -11,7 +11,27 @@ struct Vocabulary {
         }
         return newWords
     }
+    
+    // Each vocabulary word should have a corresponding emoji
+        static let icons: [String: String] = [
+            "Bear": "🐻",
+            "Crab": "🦀",
+            "Duck": "🦆",
+            "Frog": "🐸",
+            "Fox": "🦊",
+            "Goose": "🪿",
+            "Horse": "🐴",
+            "Jellyfish": "🪼",
+            "Lizard": "🦎",
+            "Octopus": "🐙",
+            "Panda": "🐼",
+            "Rabbit": "🐰",
+            "Sheep": "🐑",
+            "Whale": "🐳",
+        ]
 }
+
+
 
 extension Vocabulary {
     static let landAnimals = Vocabulary(words: [

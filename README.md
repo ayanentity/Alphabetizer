@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Alphabetizer: Complete a game with logic
 
 In this tutorial, you’ll build a fully functioning iPad game for kids learning to spell, called Alphabetizer. Working with prewritten SwiftUI views, you’ll build a “brain” for the app: a data model that understands the game rules and connects to the user interface. You’ll use observable models to connect the data models and the SwiftUI views.
@@ -11,3 +12,6 @@ These resources are associated with the [Complete a game with logic](https://dev
 ## Using these resources
 
 Follow the tutorial instructions in section one of [Complete a game with logic](https://developer.apple.com/tutorials/develop-in-swift/complete-a-game-with-logic) to use these resources within the Xcode app.
+=======
+# Alphabetizer
+>>>>>>> dc638c0b982c8bc5a85ad6286ad28b234d94b139

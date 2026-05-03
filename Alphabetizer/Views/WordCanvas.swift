@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct WordCanvas: View {
-    @State private var tiles: [Tile] = [
-        Tile(word: "First"),
-        Tile(word: "Second"),
-        Tile(word: "Third")
-    ]
+    @Environment(Alphabetizer.self) private var alphabetizer
+
+
+    private var tiles: [Tile] {
+        alphabetizer.tiles
+    }
+
 
     var body: some View {
         ZStack {
@@ -17,7 +19,7 @@ struct WordCanvas: View {
                         .frame(width: Tile.placeholderSize, height: Tile.placeholderSize)
                 }
             }
-            ForEach($tiles) { $tile in
+            ForEach(tiles) { tile in
                 TileView(tile: tile)
                     .offset(tile.centeredOffset)
                     .gesture(DragGesture().onChanged { value in
@@ -29,15 +31,28 @@ struct WordCanvas: View {
         .onAppear {
             setInitialTilePositions()
         }
+        .onChange(of: alphabetizer.message) { oldValue, newValue in
+            switch (oldValue, newValue) {
+            case (.youWin, .instructions):
+                withAnimation {
+                    setInitialTilePositions()
+                }
+            default:
+                break
+            }
+        }
     }
 }
 
 #Preview {
     WordCanvas()
+        .environment(Alphabetizer()) //@Observable環境を通してオブジェクトを共有する
 }
 
+//extensionは、本体の定義とは別ファイル・別箇所で、定数や computed property を追加できる
+
 extension WordCanvas {
-    private func setInitialTilePositions() {
+    private func setInitialTilePositions() { //タイルを中央基準で等間隔配置
         // Distribute tiles apart from each other but still centered
         // 0,0 is in the middle of the stack
         tiles.enumerated().forEach { index, tile in
